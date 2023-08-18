@@ -21,4 +21,13 @@ The green lead to RXD on the pI (5th pin down)
 ```
 
 With Arduino
-![Arduino-as-TTL-converter](doc/images/USB-to-TTL-converter-using-arduino-UNO-R3.jpg "Arduino-as-TTL-converter")
+![Arduino-as-TTL-converter](doc/images/USB-to-TTL-converter-using-arduino-UNO-R3.png "Arduino-as-TTL-converter")
+```
+on Arduino: 
+    connect the RESET pin to GND
+
+between Arduino and RPi:
+    Link the GND
+    Pin 0 (RX) from Arduino to TX from RPiD (4th pin down)
+    Pin 1 (TX) from Arduino to RX from RPiD (5th pin down)
+```
