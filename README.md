@@ -4,10 +4,12 @@
 
 ### Requirements
 ```
-RPi4
+RPi4 with SD-Card
 USB-TTL Serial Cable -or- Arduino and Jumper Cables
 MyQNX Account with QNX license
 ```
+
+### Generate SD-Card
 
 ### Serial Communication
 
