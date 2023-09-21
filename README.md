@@ -38,6 +38,19 @@ BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
 
 ### Generate SD-Card
 
+We can now download and unzip all the needed data
+clone this repo
+```
+export QNX_ROOT=${HOME}/workspace
+mkdir -p ${WORKSPACE_ROOT} && cd ${WORKSPACE_ROOT}
+git clone https://github.com/flochre/qnx_ros2_rpi.git
+cd ${WORKSPACE_ROOT}/qnx_ros2_rpi
+./generate-sd-card.bash
+```
+
+this will generate a out folder that contain what you should copy on the SD-Card
+Make sure to format your SD-card in FAT
+
 ### Serial Communication
 
 With USB-TTL Serial Cable
@@ -56,7 +69,7 @@ on Arduino:
     connect the RESET pin to GND
 
 between Arduino and RPi:
-    Link the GND
+    Link the GND (3rd pin down from RPi) to any GND of the Arduino
     Pin 0 (RX) from Arduino to TX from RPiD (4th pin down)
     Pin 1 (TX) from Arduino to RX from RPiD (5th pin down)
 ```
