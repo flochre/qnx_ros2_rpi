@@ -9,6 +9,33 @@ USB-TTL Serial Cable -or- Arduino and Jumper Cables
 MyQNX Account with QNX license
 ```
 
+### Install QNX Software Center
+Download the software center for your system
+https://www.qnx.com/download/group.html?programid=29178
+
+In linux use it:
+```
+chmod +x qnx-setup-2.0-202209011607-linux.run
+./qnx-setup-2.0-202209011607-linux.run
+```
+
+![QNX SW Center](doc/images/QNX_sw_center.png "QNX SW Center")
+
+Install via Add Installation..
+
+![QNX SW 710](doc/images/install_qnx_sw_dev_710.png "QNX SW 710")
+
+Once install is done add the board RPi4 via Manage Installation
+
+![QNX SW Center](doc/images/QNX_sw_center.png "QNX SW Center")
+![QNX SW Install RPi](doc/images/install_rpi_board.png "QNX SW Install RPi")
+
+Inside qnx710 you should have a bsp folder
+```
+$ l ~/qnx710/bsp/
+BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
+```
+
 ### Generate SD-Card
 
 ### Serial Communication
@@ -19,7 +46,7 @@ With USB-TTL Serial Cable
 The red lead should not be connected in our case
 The black lead to GND (3rd pin down)
 The white lead to TXD on the Pi (4th pin down)
-The green lead to RXD on the pI (5th pin down)
+The green lead to RXD on the Pi (5th pin down)
 ```
 
 With Arduino
@@ -33,3 +60,7 @@ between Arduino and RPi:
     Pin 0 (RX) from Arduino to TX from RPiD (4th pin down)
     Pin 1 (TX) from Arduino to RX from RPiD (5th pin down)
 ```
+
+source: 
+    1- https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
+    1- https://youtu.be/y42V_7ZTa-s
