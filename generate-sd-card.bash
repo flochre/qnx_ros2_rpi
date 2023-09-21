@@ -14,6 +14,10 @@ readonly OUT_DIR=$SCRIPT_DIR/out
 
 # Defaults
 result=1        # Default to failure
+commit=master
+# commit=afdb60cc1a8a4aa0c6af68f02b6c1efe6256ba5d
+qnx_folder=${HOME}/qnx710
+qnx_bsp_file=$qnx_folder/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
 
 # Loggers
 log(){
@@ -74,15 +78,26 @@ done
 trap 'cleanup $result' EXIT
 
 mkdir -p $OUT_DIR && cd $OUT_DIR
-wget -q -O bcm2711-rpi-4-b.dtb https://github.com/raspberrypi/firmware/raw/master/boot/bcm2711-rpi-4-b.dtb
-wget -q -O fixup4.dat https://github.com/raspberrypi/firmware/raw/master/boot/fixup4.dat
-wget -q -O fixup4cd.dat https://github.com/raspberrypi/firmware/raw/master/boot/fixup4cd.dat
-wget -q -O fixup4db.dat https://github.com/raspberrypi/firmware/raw/master/boot/fixup4db.dat
-wget -q -O fixup4x.dat https://github.com/raspberrypi/firmware/raw/master/boot/fixup4x.dat
-wget -q -O start4.elf https://github.com/raspberrypi/firmware/raw/master/boot/start4.elf
-wget -q -O start4cd.elf https://github.com/raspberrypi/firmware/raw/master/boot/start4cd.elf
-wget -q -O start4db.elf https://github.com/raspberrypi/firmware/raw/master/boot/start4db.elf
-wget -q -O start4x.elf https://github.com/raspberrypi/firmware/raw/master/boot/start4x.elf
+
+if [ -f $qnx_bsp_file ]; then
+  echo "file present extracting"
+  unzip $qnx_bsp_file images/ifs-rpi4.bin images/tools/sdboot_images/config.txt -d $OUT_DIR -qq
+  mv $OUT_DIR/images/ifs-rpi4.bin $OUT_DIR
+  mv $OUT_DIR/images/tools/sdboot_images/config.txt $OUT_DIR
+  rm -rf $OUT_DIR/images
+else
+  error FAIL
+fi
+
+wget -q -O bcm2711-rpi-4-b.dtb https://github.com/raspberrypi/firmware/raw/$commit/boot/bcm2711-rpi-4-b.dtb
+wget -q -O fixup4.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4.dat
+wget -q -O fixup4cd.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4cd.dat
+wget -q -O fixup4db.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4db.dat
+wget -q -O fixup4x.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4x.dat
+wget -q -O start4.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4.elf
+wget -q -O start4cd.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4cd.elf
+wget -q -O start4db.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4db.elf
+wget -q -O start4x.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4x.elf
 
 result=0
 exit 0
