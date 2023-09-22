@@ -84,7 +84,7 @@ sources:
 ### Requirements
 1. qnx710 env with bsp archive downloaded
 
-see #install-qnx-software-center for how to download
+see [Install QNX SW Center](#install-qnx-software-center) for how to download
 
 
 ### Generate environment
