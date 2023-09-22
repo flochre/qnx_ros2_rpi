@@ -10,6 +10,7 @@ MyQNX Account with QNX license
 ```
 
 ### Install QNX Software Center
+Please note you need a license to be able to download.
 Download the software center for your system
 https://www.qnx.com/download/group.html?programid=29178
 
@@ -83,6 +84,8 @@ sources:
 ### Requirements
 1. qnx710 env with bsp archive downloaded
 
+see #install-qnx-software-center for how to download
+
 
 ### Generate environment
 Extract the archive you want to work on in my example: BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
@@ -94,10 +97,8 @@ export BSP_ROOT_DIR=$QNX_ROOT_DIR/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710
 ```
 cd $QNX_ROOT_DIR
 source qnxsdp-env.sh
-cd $BSP_ROOT_DIR/install && make
-cd $BSP_ROOT_DIR/images && make
+cd $BSP_ROOT_DIR && make
 ```
-
 now the file $BSP_ROOT_DIR/images/ifs-rpi4.bin has been generated new
 
 ### Generate ifs-rpi4.bin
