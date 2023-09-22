@@ -72,7 +72,6 @@ between Arduino and RPi:
     Pin 1 (TX) from Arduino to RX from RPiD (5th pin down)
 ```
 
-source:
-
+sources:
 1. https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
 1. https://youtu.be/y42V_7ZTa-s
