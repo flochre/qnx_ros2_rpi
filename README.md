@@ -81,9 +81,8 @@ sources:
 ## Generate your own ifs-rpi4.bin
 
 ### Requirements
-```
-qnx710 env with bsp archive downloaded
-```
+1. qnx710 env with bsp archive downloaded
+
 
 ### Generate environment
 Extract the archive you want to work on in my example: BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
