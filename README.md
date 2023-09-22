@@ -73,5 +73,7 @@ between Arduino and RPi:
 ```
 
 sources:
+1. http://www.qnx.com/download/download/56868/SDP710_BSP_UG_RASPBERRYPI_BCM2711_RPI4_Board_20221111.pdf
+1. https://www.qnx.com/developers/articles/rel_6836_0.html
 1. https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
 1. https://youtu.be/y42V_7ZTa-s
