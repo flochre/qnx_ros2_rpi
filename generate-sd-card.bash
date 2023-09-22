@@ -14,8 +14,14 @@ readonly OUT_DIR=$SCRIPT_DIR/out
 
 # Defaults
 result=1        # Default to failure
-commit=master
+# commit=master
 # commit=afdb60cc1a8a4aa0c6af68f02b6c1efe6256ba5d
+
+# recommanded commit from qnx
+# search for Boot Firmware Files Versions into release note
+# https://www.qnx.com/developers/articles/rel_6836_0.html
+commit=0d458874a89921fbe460e422b239695e1e101e2b
+
 qnx_folder=${HOME}/qnx710
 qnx_bsp_file=$qnx_folder/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
 
@@ -89,15 +95,22 @@ else
   error FAIL
 fi
 
-wget -q -O bcm2711-rpi-4-b.dtb https://github.com/raspberrypi/firmware/raw/$commit/boot/bcm2711-rpi-4-b.dtb
-wget -q -O fixup4.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4.dat
-wget -q -O fixup4cd.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4cd.dat
-wget -q -O fixup4db.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4db.dat
-wget -q -O fixup4x.dat https://github.com/raspberrypi/firmware/raw/$commit/boot/fixup4x.dat
-wget -q -O start4.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4.elf
-wget -q -O start4cd.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4cd.elf
-wget -q -O start4db.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4db.elf
-wget -q -O start4x.elf https://github.com/raspberrypi/firmware/raw/$commit/boot/start4x.elf
+boot_file_list=(\
+  bcm2711-rpi-4-b.dtb \
+  start4.elf \
+  start4x.elf \
+  start4db.elf \
+  start4cd.elf \
+  fixup4.dat \
+  fixup4x.dat \
+  fixup4cd.dat \
+  fixup4db.dat \
+)
+
+for boot_file in "${boot_file_list[@]}";
+do
+  wget -O $boot_file https://github.com/raspberrypi/firmware/raw/$commit/boot/$boot_file
+done
 
 result=0
 exit 0
