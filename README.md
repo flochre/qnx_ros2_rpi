@@ -77,3 +77,34 @@ sources:
 1. https://www.qnx.com/developers/articles/rel_6836_0.html
 1. https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
 1. https://youtu.be/y42V_7ZTa-s
+
+## Generate your own ifs-rpi4.bin
+
+### Requirements
+```
+qnx710 env with bsp archive downloaded
+```
+
+### Generate environment
+Extract the archive you want to work on in my example: BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
+```
+export QNX_ROOT_DIR=~/qnx710    # default but may varie
+export BSP_ROOT_DIR=$QNX_ROOT_DIR/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18  # default for rpi4 but may varie
+```
+
+```
+cd $QNX_ROOT_DIR
+source qnxsdp-env.sh
+cd $BSP_ROOT_DIR/install && make
+cd $BSP_ROOT_DIR/images && make
+```
+
+now the file $BSP_ROOT_DIR/images/ifs-rpi4.bin has been generated new
+
+### Generate ifs-rpi4.bin
+You can now change the rpi4.build file to your convenience and compile a new ifs-rpi4.bin
+```
+cd $QNX_ROOT_DIR
+source qnxsdp-env.sh
+cd $BSP_ROOT_DIR/images && make
+```
