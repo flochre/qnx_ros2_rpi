@@ -14,16 +14,18 @@ readonly OUT_DIR=$SCRIPT_DIR/out
 
 # Defaults
 result=1        # Default to failure
-# commit=master
-# commit=afdb60cc1a8a4aa0c6af68f02b6c1efe6256ba5d
 
 # recommanded commit from qnx
 # search for Boot Firmware Files Versions into release note
 # https://www.qnx.com/developers/articles/rel_6836_0.html
 commit=0d458874a89921fbe460e422b239695e1e101e2b
+# for commit you can use a hash or a branch
+# commit=master
+# commit=afdb60cc1a8a4aa0c6af68f02b6c1efe6256ba5d
 
 qnx_folder=${HOME}/qnx710
-qnx_bsp_file=$qnx_folder/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
+# qnx_bsp_file=$qnx_folder/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
+qnx_bsp_file=$qnx_folder/bsp/BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18
 
 # Loggers
 log(){
@@ -86,13 +88,16 @@ trap 'cleanup $result' EXIT
 mkdir -p $OUT_DIR && cd $OUT_DIR
 
 if [ -f $qnx_bsp_file ]; then
-  echo "file present extracting"
+  echo "input present and considered zipfile extracting.."
   unzip $qnx_bsp_file images/ifs-rpi4.bin images/tools/sdboot_images/config.txt -d $OUT_DIR -qq
   mv $OUT_DIR/images/ifs-rpi4.bin $OUT_DIR
   mv $OUT_DIR/images/tools/sdboot_images/config.txt $OUT_DIR
   rm -rf $OUT_DIR/images
+elif [ -d $qnx_bsp_file ]; then
+  echo "input is a folder copying needed files.."
+  cp $qnx_bsp_file/images/ifs-rpi4.bin $qnx_bsp_file/images/tools/sdboot_images/config.txt $OUT_DIR
 else
-  error FAIL
+  panic "$qnx_bsp_file is not a file nor a directory"
 fi
 
 boot_file_list=(\
