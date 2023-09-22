@@ -37,7 +37,6 @@ BSP_raspberrypi-bcm2711-rpi4_br-710_be-710_SVN946248_JBN18.zip
 ```
 
 ### Generate SD-Card
-
 We can now download and unzip all the needed data
 clone this repo
 ```
@@ -52,7 +51,6 @@ this will generate a out folder that contain what you should copy on the SD-Card
 Make sure to format your SD-card in FAT
 
 ### Serial Communication
-
 With USB-TTL Serial Cable
 ![RPi-Console-connection](doc/images/learn_raspberry_pi_piconsole_bb.png "RPi-Console-connection")
 ```
@@ -75,5 +73,5 @@ between Arduino and RPi:
 ```
 
 source: 
-    1- https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
-    1- https://youtu.be/y42V_7ZTa-s
+    1. https://carleton.ca/rcs/qnx/installing-qnx-on-raspberry-pi-4/
+    1. https://youtu.be/y42V_7ZTa-s
