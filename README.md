@@ -127,7 +127,22 @@ Copy the out folder after executing the script `generate-sd-card.bash`
 
 #### On QNX target
 After first boot on the QNX System
+
+You should get following error message
 ```
+Starting SSH Deamon...
+mkdir: /etc/ssh: Function not implemented
+mkdir: /var/chroot: Function not implemented
+mkdir: /var/chroot/sshd: Function not implemented
+/var/chroot/sshd: No such file or directory
+Generating public/private ed25519 key pair.
+Saving key "/etc/ssh/ssh_host_ed25519_key" failed: No such file or directory
+sshd: no hostkeys available -- exiting.
+```
+```
+# Reload the sd card reader
+devb-sdmmc-bcm2711 mem name=below1G sdio addr=0xfe340000,irq=158,bs=bmstr_base=0xc0000000 disk name=sd
+
 ls /dev/sd*     # check the partitions are all there
 
 --- look like this for me
@@ -149,6 +164,13 @@ So for me I need to mount /dev/sd1t12.1
 Let us format the fat partition to qnx6
 ```
 mkqnx6fs /dev/sd1t12.1
+----
+# mkqnx6fs /dev/sd1t12.1
+All files on /dev/sd1t12.1 will be lost!
+Confirm filesystem re-format (y) or (n): y
+Format fs-qnx6: 3857916 blocks, 120576 inodes, 8 groups
+----
+
 mount -t qnx6 /dev/sd1t12.1 /
 
 # generate a few useful folders
@@ -156,7 +178,7 @@ mkdir -p /home/qnxuser
 chown qnxuser:qnxuser /home/qnxuser
 
 # restart qnx target
-shutdown
+shutdown ## If shutdown does NOT work power off and on again
 ```
 
 source [QNXGuide from LinuxLink](https://linuxlink.timesys.com/docs/bfc/QNXGuide)
